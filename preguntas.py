@@ -23,7 +23,6 @@ def pregunta_01():
     40
 
     """
-    
     return len(tbl0.index)
 
 
@@ -70,7 +69,6 @@ def pregunta_04():
     return tbl0[["_c1","_c2"]].groupby(by=["_c1"]).mean().squeeze()
 
 
-
 def pregunta_05():
     """
     Calcule el valor máximo de _c2 por cada letra en la columna _c1 del archivo
@@ -88,7 +86,6 @@ def pregunta_05():
     return tbl0[["_c1","_c2"]].groupby(by=["_c1"]).max().squeeze()
 
 
-
 def pregunta_06():
     """
     Retorne una lista con los valores unicos de la columna _c4 de del archivo `tbl1.csv`
@@ -98,12 +95,13 @@ def pregunta_06():
     ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 
     """
-    lista = []
+    lst = []
     for item in tbl1["_c4"]:
-        if item.upper() not in lista:
-            lista.append(item.upper())
-    lista.sort()
-    return lista
+        if item.upper() not in lst:
+            lst.append(item.upper())
+    lst.sort()
+    
+    return lst
 
 
 def pregunta_07():
@@ -138,7 +136,8 @@ def pregunta_08():
 
     """
     tbl0["suma"] = tbl0["_c0"] + tbl0["_c2"]
-    return tbl10
+
+    return tbl0
 
 
 def pregunta_09():
@@ -157,7 +156,8 @@ def pregunta_09():
 
     """
     tbl0['year'] = tbl0['_c3'].str.slice(0, 4)
-    return tb10
+    
+    return tbl0
 
 
 def pregunta_10():
@@ -174,7 +174,8 @@ def pregunta_10():
     3   D                  1:2:3:5:5:7
     4   E  1:1:2:3:3:4:5:5:5:6:7:8:8:9
     """
-    datitos = pd.DataFrame()
+
+    dataf = pd.DataFrame()
     for letra in tbl0["_c1"].unique():
         df = np.where(tbl0["_c1"]==letra,tbl0["_c2"],"")
         df = np.delete(df, np.where(df == ""))
@@ -183,8 +184,8 @@ def pregunta_10():
             string = string + str(item) + ":"
         string = string[:-1]
         temp = pd.DataFrame({"_c0":[letra], "_c1": string})
-        datitos = datitos.append(temp, ignore_index=True)
-    return datitos.sort_values("_c0").reset_index().drop("index", axis =1)
+        dataf = dataf.append(temp, ignore_index=True)
+    return dataf.sort_values("_c0").reset_index().drop("index", axis =1)
 
 
 def pregunta_11():
@@ -203,7 +204,8 @@ def pregunta_11():
     38   38      d,e
     39   39    a,d,f
     """
-     dat = pd.DataFrame()
+
+    dataf = pd.DataFrame()
     for letra in tbl1["_c0"].unique():
         df = np.where(tbl1["_c0"]==letra,tbl1["_c4"],"")
         df = np.delete(df, np.where(df == ""))
@@ -212,8 +214,9 @@ def pregunta_11():
             string = string + str(item) + ","
         string = string[:-1]
         temp = pd.DataFrame({"_c0":[letra], "_c4": string})
-        dat = dat.append(temp, ignore_index=True)
-    return dat
+        dataf = dataf.append(temp, ignore_index=True)
+
+    return dataf
 
 
 def pregunta_12():
